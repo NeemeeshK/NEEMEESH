@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row" style="margin-top: 90px">
+        <div class="col-7 bg">
+
+        </div>
+        <div class="col-5 bl">
+            <div class="row">
+                <div class="col-12 right-c">
+                    <h1 class="title">{{movies.movie_name}}</h1>
+                    <h4 class="pillow">{{movies.movie_genre}}</h4>
+                    <h4> <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        {{movies.movie_duration}} | <i class="fa fa-calendar-o"></i> {{movies.movie_rdate}} </h4>
+                    <p class="desc">{{movies.movie_des}}</p>
+                    <h2 class="rate"> <i class="fa fa-heart"></i> {{movies.movie_rating}} </h2>
+                    <h4><a href={{movies.movie_trailer}} target="_blank" >Watch Trailer <i class="fa fa-play-circle"></i></a></h4>
+                </div>
+
+    <div class="container d-none">
+        <div class="row mt-5">
+            <div class="col-3">
+                <div class="card">
+                    <img class="card-img-top" src="{{movies.movie_poster.url}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h1>Select timings</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                            {% for i in cin %}
+                            {{i.cinema_name}}
+                            {% for j in i.cinema_show.all %}
+                            {% if j.movie_id == movies.movie %}
+                            <a href="/seat/{{j.shows}}"> {{j.date}}  {{j.time}} </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            {% endif %}
+                            {% endfor %}<br>
+                        {% endfor %}
+            </div><br><br>
+        </div>
+    </div>
+    {% endblock %}

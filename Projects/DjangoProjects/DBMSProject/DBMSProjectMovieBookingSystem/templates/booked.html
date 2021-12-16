@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block JQuery %}
+
+<script>
+    window.onload = function() {
+      window.location.href = "./ticket/{{book.pk}}";
+  }
+</script>
+
+{% endblock %}
